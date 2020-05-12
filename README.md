@@ -72,6 +72,8 @@ index = pd.read_csv('./email/full/index', sep=' ', header=None, names=['type', '
 
 3.训练数据，得到词集
 
+4.得到贝叶斯概率，假如邮件中有词集里没有的单词，就使用平滑处理
+
 ## 3.测试与结果分析
 
 ![img](file:///C:\Users\12273\AppData\Roaming\Tencent\Users\1227355064\TIM\WinTemp\RichOle\57~9LAKO5@`V7J4B2J4UQ5S.png)
