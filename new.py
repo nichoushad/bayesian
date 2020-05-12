@@ -45,7 +45,7 @@ def createVocabList(dataSet):
 
 
 # 通过index文件获取spam和ham对应的文件的path,并且处理数据
-def get_eamilframe(path):
+def get_emailframe(path):
     with open(os.path.join('.', 'email', 'data', path), 'r', encoding='gbk', errors='ignore') as f:
         lines = f.readlines()
         email = ''
@@ -145,7 +145,7 @@ def spamTest(trainNum, testNum):
     ham_in_rows = index.loc[index['type'] == "ham"].shape[0]
     print(spams_in_rows,ham_in_rows)
     for type, path in zip(index['type'], index['path']):
-        wordList = get_eamilframe(path)
+        wordList = get_emailframe(path)
         docList.append(wordList)  # 用来创建字典
         if type == 'spam':
             classList.append(1)  # 1代表垃圾邮件
