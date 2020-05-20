@@ -5,13 +5,15 @@ import json
 import os
 
 from numpy import *
-
+from sklearn.utils import shuffle
 def set_result_to_file(result):
     train_num = result['train_spam_in_rows']+result['train_ham_in_rows']
     test_num = result['test_spam_in_rows']+result['test_ham_in_rows']
     result_path = os.path.join('./result','{train}_{test}'.format(train=train_num,test=test_num))
-    with open(result_path, 'w') as f:
+    with open(result_path, 'a') as f:
+        f.write('\n')
         json.dump(result, f)
+
 
 def clean_str(string):
     string = re.sub(r"[^\u4e00-\u9fff]", " ", string)
@@ -21,6 +23,7 @@ def clean_str(string):
 
 def get_index(skiprows,nrows):
     index = pd.read_csv('./email/full/index', sep=' ', header=None, names=['type', 'path'], skiprows=skiprows, nrows=nrows)
+    index = shuffle(index)
     print("data shape:", index.shape)
     spams_in_rows = index.loc[index['type'] == "spam"].shape[0]
     ham_in_rows = index.loc[index['type'] == "ham"].shape[0]
@@ -206,10 +209,17 @@ def spamTest(trainNum, testNum):
 
 
 if __name__ == '__main__':
-    # spamTest(500,200)
     # spamTest(800,300)
+    # spamTest(800, 300)
+    # spamTest(800, 300)
+    # spamTest(800, 300)
     # spamTest(1000,300)
+    # spamTest(1000, 300)
+    # spamTest(1000, 300)
     # spamTest(1500,400)
+    # spamTest(1500, 400)
+    # spamTest(1500, 400)
     spamTest(3000,500)
+    spamTest(3000, 500)
 
 #统计正确率（accuracy）、准确率(Precision)、召回率（recall）；
